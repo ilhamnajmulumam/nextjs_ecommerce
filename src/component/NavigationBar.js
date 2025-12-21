@@ -1,0 +1,60 @@
+import { BookText, Search, Menu } from 'lucide-react';
+
+export default function NavigationBar() {
+    return (
+        <nav className="w-full bg-white shadow-md px-8 py-4 flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+                <BookText size={40} className="text-blue-600" />
+                <h1 className="font-bold text-3xl tracking-wide">
+                    Book<span className="text-blue-600">Store</span>
+                </h1>
+            </div>
+
+            {/* Search Bar */}
+            <div className="hidden md:flex items-center border rounded-xl px-3 py-2 w-1/3 focus-within:ring-2 focus-within:ring-blue-500">
+                <Search size={24} className="text-gray-500" />
+                <input
+                    type="text"
+                    placeholder="Search books..."
+                    className="ml-2 w-full outline-none text-lg"
+                />
+            </div>
+
+            {/* Menu */}
+            <ul className="hidden md:flex items-center gap-8 text-lg font-medium">
+                {['Home', 'About', 'Services', 'Contact'].map((item) => (
+                    <li key={item}>
+                        <a
+                            href={`#${item.toLowerCase()}`}
+                            className="hover:text-blue-600 transition-colors"
+                        >
+                            {item}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+
+            {/* Auth Buttons */}
+            <div className="hidden md:flex items-center gap-4">
+                <a
+                    href="#login"
+                    className="text-lg hover:text-blue-600 transition"
+                >
+                    Login
+                </a>
+                <a
+                    href="#signup"
+                    className="bg-blue-600 text-white px-5 py-2 rounded-xl text-lg hover:bg-blue-700 transition"
+                >
+                    Signup
+                </a>
+            </div>
+
+            {/* Mobile Menu Icon */}
+            <button className="md:hidden">
+                <Menu size={32} />
+            </button>
+        </nav>
+    );
+}
