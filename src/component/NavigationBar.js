@@ -2,7 +2,7 @@ import { BookText, Search, Menu } from 'lucide-react';
 
 export default function NavigationBar() {
     return (
-        <nav className="w-full bg-white shadow-md px-8 py-4 flex items-center justify-between">
+        <nav className="w-7/8 bg-white shadow-md px-8 py-4 flex items-center justify-between rounded-xl fixed top-4 left-1/2 -translate-x-1/2 z-10">
             {/* Logo */}
             <div className="flex items-center gap-3">
                 <BookText size={40} className="text-blue-600" />

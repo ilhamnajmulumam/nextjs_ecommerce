@@ -18,7 +18,7 @@ export default function BooksSlider({ books }) {
                 delay: 3000,
                 disableOnInteraction: false,
             }}
-            className="mt-4 w-full"
+            className="mt-2 w-full"
         >
             {books.map((book) => (
                 <SwiperSlide key={book.id} className="w-auto!">
@@ -26,6 +26,7 @@ export default function BooksSlider({ books }) {
                         title={book.title}
                         author={book.author}
                         image={book.image}
+                        price={book.price}
                     />
                 </SwiperSlide>
             ))}
