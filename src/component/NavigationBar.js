@@ -38,13 +38,13 @@ export default function NavigationBar() {
             {/* Auth Buttons */}
             <div className="hidden md:flex items-center gap-4">
                 <a
-                    href="#login"
+                    href="login"
                     className="text-lg hover:text-blue-600 transition"
                 >
                     Login
                 </a>
                 <a
-                    href="#signup"
+                    href="signup"
                     className="bg-blue-600 text-white px-5 py-2 rounded-xl text-lg hover:bg-blue-700 transition"
                 >
                     Signup

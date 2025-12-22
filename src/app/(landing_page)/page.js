@@ -79,9 +79,6 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-gray-100">
-            {/* Navbar */}
-            <NavigationBar />
-
             {/* Content */}
             <main className="pt-32 px-10 pb-10 max-w-screen-2xl mx-auto">
                 {/* Header */}
