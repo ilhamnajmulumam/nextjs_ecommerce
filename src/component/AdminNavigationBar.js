@@ -34,8 +34,8 @@ export default function AdminNavigationBar() {
             icon: <LayoutDashboard size={22} />,
         },
         {
-            name: 'Manage Books',
-            href: '/admin/manage-books',
+            name: 'Book Management',
+            href: '/admin/book-management',
             icon: <ArrowLeftRight size={22} />,
         },
         {
@@ -106,9 +106,7 @@ export default function AdminNavigationBar() {
             {/* Logout */}
             <button
                 onClick={handleSignOut}
-                className="flex items-center gap-3 px-4 py-3 mx-2 mt-auto mb-4 rounded-lg
-                           text-red-400 hover:bg-red-500/10 transition-all
-                           justify-center md:justify-start"
+                className="flex items-center gap-3 px-4 py-3 mx-2 mt-auto mb-4 rounded-lg text-red-400 hover:bg-red-500/10 transition-alljustify-center md:justify-start"
             >
                 <LogOut size={22} />
                 <span className="hidden md:inline">Logout</span>
