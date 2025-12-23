@@ -44,7 +44,7 @@ export default function NavigationBar() {
                     Login
                 </a>
                 <a
-                    href="signup"
+                    href="sign-up"
                     className="bg-blue-600 text-white px-5 py-2 rounded-xl text-lg hover:bg-blue-700 transition"
                 >
                     Signup

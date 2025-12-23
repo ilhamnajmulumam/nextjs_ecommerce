@@ -21,10 +21,13 @@ export default function UsertLayout({ children }) {
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen overflow-hidden`}
             >
                 <UserNavigationBar />
-                {children}
+
+                <div className="flex-1 overflow-auto bg-gray-100">
+                    {children}
+                </div>
             </body>
         </html>
     );

@@ -6,7 +6,6 @@ import {
     LayoutDashboard,
     ArrowLeftRight,
     CirclePlus,
-    ChartColumnBig,
     LogOut,
     SlidersVertical,
     UserStar,
@@ -21,7 +20,7 @@ export default function AdminNavigationBar() {
     const handleSignOut = async () => {
         try {
             // await signOut();
-            router.push('/sign-in');
+            router.push('/login');
         } catch (error) {
             console.error('Error signing out:', error);
         }
