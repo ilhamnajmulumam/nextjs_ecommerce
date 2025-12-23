@@ -3,43 +3,12 @@
 import { Edit, Trash2, Plus, Search } from 'lucide-react';
 import Image from 'next/image';
 
-/* Dummy Data */
-const initialBooks = [
-    {
-        id: 1,
-        title: 'Atomic Habits',
-        author: 'James Clear',
-        category: 'Self-Help',
-        price: 120000,
-        stock: 50,
-        cover: 'https://via.placeholder.com/80x120',
-    },
-    {
-        id: 2,
-        title: 'Rich Dad Poor Dad',
-        author: 'Robert Kiyosaki',
-        category: 'Bisnis',
-        price: 150000,
-        stock: 30,
-        cover: 'https://via.placeholder.com/80x120',
-    },
-    {
-        id: 3,
-        title: 'Harry Potter',
-        author: 'J.K. Rowling',
-        category: 'Fiksi',
-        price: 180000,
-        stock: 20,
-        cover: 'https://via.placeholder.com/80x120',
-    },
-];
-
-export function BookmanagementClient() {
+export function BookmanagementClient({ initialBooks }) {
     return (
-        <section className="space-y-6   ">
+        <section className="space-y-6">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-3xl font-bold text-slate-900">
                     Manajemen Buku
                 </h2>
 

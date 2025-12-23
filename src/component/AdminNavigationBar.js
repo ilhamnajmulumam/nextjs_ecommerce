@@ -48,12 +48,6 @@ export default function AdminNavigationBar() {
             href: '/admin/categories',
             icon: <SlidersVertical size={22} />,
         },
-
-        {
-            name: 'Reports',
-            href: '/admin/reports',
-            icon: <ChartColumnBig size={22} />,
-        },
         {
             name: 'Settings',
             href: '/admin/settings',

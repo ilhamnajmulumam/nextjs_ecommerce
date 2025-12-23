@@ -1,0 +1,147 @@
+export const orders = [
+    {
+        id: 'ORD-001',
+        userId: 'USR-001',
+        customerName: 'Budi Santoso',
+        date: '2023-10-15',
+        status: 'delivered',
+        total: 275000,
+        items: [
+            {
+                bookId: '1',
+                bookTitle: 'Atomic Habits',
+                quantity: 1,
+                price: 125000,
+            },
+            {
+                bookId: '2',
+                bookTitle: 'Sapiens',
+                quantity: 1,
+                price: 150000,
+            },
+        ],
+    },
+    {
+        id: 'ORD-002',
+        userId: 'USR-002',
+        customerName: 'Siti Aminah',
+        date: '2023-10-18',
+        status: 'shipped',
+        total: 135000,
+        items: [
+            {
+                bookId: '3',
+                bookTitle: 'The Psychology of Money',
+                quantity: 1,
+                price: 135000,
+            },
+        ],
+    },
+    {
+        id: 'ORD-003',
+        userId: 'USR-001',
+        customerName: 'Budi Santoso',
+        date: '2023-10-20',
+        status: 'processing',
+        total: 300000,
+        items: [
+            {
+                bookId: '4',
+                bookTitle: 'Educated',
+                quantity: 1,
+                price: 140000,
+            },
+            {
+                bookId: '5',
+                bookTitle: 'Thinking, Fast and Slow',
+                quantity: 1,
+                price: 160000,
+            },
+        ],
+    },
+    {
+        id: 'ORD-004',
+        userId: 'USR-003',
+        customerName: 'Rina Wijaya',
+        date: '2023-10-21',
+        status: 'pending',
+        total: 95000,
+        items: [{ bookId: '6', bookTitle: '1984', quantity: 1, price: 95000 }],
+    },
+    {
+        id: 'ORD-005',
+        userId: 'USR-004',
+        customerName: 'Ahmad Dani',
+        date: '2023-10-22',
+        status: 'cancelled',
+        total: 110000,
+        items: [
+            {
+                bookId: '7',
+                bookTitle: 'The Alchemist',
+                quantity: 1,
+                price: 110000,
+            },
+        ],
+    },
+    {
+        id: 'ORD-006',
+        userId: 'USR-001',
+        customerName: 'Budi Santoso',
+        date: '2023-10-23',
+        status: 'pending',
+        total: 250000,
+        items: [
+            {
+                bookId: '8',
+                bookTitle: 'Start With Why',
+                quantity: 1,
+                price: 130000,
+            },
+            {
+                bookId: '9',
+                bookTitle: 'The Power of Now',
+                quantity: 1,
+                price: 120000,
+            },
+        ],
+    },
+    {
+        id: 'ORD-007',
+        userId: 'USR-005',
+        customerName: 'Dewi Lestari',
+        date: '2023-10-24',
+        status: 'delivered',
+        total: 145000,
+        items: [
+            {
+                bookId: '10',
+                bookTitle: 'Deep Work',
+                quantity: 1,
+                price: 145000,
+            },
+        ],
+    },
+    {
+        id: 'ORD-008',
+        userId: 'USR-002',
+        customerName: 'Siti Aminah',
+        date: '2023-10-25',
+        status: 'processing',
+        total: 330000,
+        items: [
+            {
+                bookId: '11',
+                bookTitle: 'The Lean Startup',
+                quantity: 1,
+                price: 155000,
+            },
+            {
+                bookId: '12',
+                bookTitle: 'Becoming',
+                quantity: 1,
+                price: 175000,
+            },
+        ],
+    },
+];
