@@ -29,7 +29,7 @@ export default function SignUpClient() {
         }
 
         try {
-            const result = await signUp({ name, email, password });
+            const result = await signUp({ email, password, name });
             if (!result.user) {
                 setError(result.error || 'Sign up failed');
             }
@@ -58,7 +58,10 @@ export default function SignUpClient() {
                     </p>
                 </div>
 
-                <div className="mt-12 flex flex-col items-center">
+                <form
+                    onSubmit={handleSignUp}
+                    className="mt-12 flex flex-col items-center"
+                >
                     <h2 className="text-2xl xl:text-3xl font-extrabold">
                         Sign Up
                     </h2>
@@ -85,23 +88,42 @@ export default function SignUpClient() {
                         {/* Form */}
                         <div className="mx-auto max-w-xs">
                             <input
+                                id="name"
+                                name="name"
                                 type="text"
                                 placeholder="Full Name"
                                 className="w-full px-8 py-4 rounded-lg bg-gray-100 border focus:outline-none focus:bg-white"
+                                required
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                             />
                             <input
+                                id="email"
+                                name="email"
                                 type="email"
                                 placeholder="Email"
                                 className="w-full mt-5 px-8 py-4 rounded-lg bg-gray-100 border focus:outline-none focus:bg-white"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <input
+                                id="password"
+                                name="password"
                                 type="password"
                                 placeholder="Password"
                                 className="w-full mt-5 px-8 py-4 rounded-lg bg-gray-100 border focus:outline-none focus:bg-white"
+                                required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
 
-                            <button className="mt-5 w-full py-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
-                                Sign Up
+                            <button
+                                type="submit"
+                                disabled={isLoading}
+                                className="mt-5 w-full py-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+                            >
+                                {isLoading ? 'Signing Up...' : 'Sign Up'}
                             </button>
 
                             {/* Login CTA */}
@@ -116,7 +138,7 @@ export default function SignUpClient() {
                             </p>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
             {/* Right */}
