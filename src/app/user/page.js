@@ -1,8 +1,19 @@
 import { orders } from '@/data/orders';
 import { currentUser } from '@/data/users';
 import UserClient from './user-client';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-export default function UserDashboard() {
+export default async function UserDashboard() {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session) {
+        redirect('/login');
+    }
+
     const myOrders = orders.filter((o) => o.userId === currentUser.id);
     const totalSpent = myOrders.reduce((sum, o) => sum + o.total, 0);
     const activeOrders = myOrders.filter((o) =>
@@ -12,6 +23,7 @@ export default function UserDashboard() {
     return (
         <section className="bg-gray-100 w-full min-h-screen p-10">
             <UserClient
+                session={session}
                 totalSpent={totalSpent}
                 activeOrders={activeOrders}
                 myOrders={myOrders}

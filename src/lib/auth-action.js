@@ -15,7 +15,7 @@ export async function signUp({ email, password, name }) {
 }
 
 export async function login({ email, password }) {
-    return await auth.api.loginEmail({
+    return await auth.api.signInEmail({
         body: {
             email,
             password,

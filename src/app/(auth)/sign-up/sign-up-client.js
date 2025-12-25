@@ -117,6 +117,24 @@ export default function SignUpClient() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            <input
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                type="password"
+                                placeholder="Confirm Password"
+                                className="w-full mt-5 px-8 py-4 rounded-lg bg-gray-100 border focus:outline-none focus:bg-white"
+                                required
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                }
+                            />
+
+                            {error && (
+                                <p className="mt-4 text-sm text-red-600 text-center">
+                                    {error}
+                                </p>
+                            )}
 
                             <button
                                 type="submit"
