@@ -2,6 +2,7 @@
 
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export async function signUp({ email, password, name }) {
     try {
@@ -14,12 +15,9 @@ export async function signUp({ email, password, name }) {
     }
 }
 
-export async function login({ email, password }) {
+export async function signIn({ email, password }) {
     return await auth.api.signInEmail({
-        body: {
-            email,
-            password,
-        },
+        body: { email, password },
     });
 }
 

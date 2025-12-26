@@ -10,9 +10,8 @@ import {
     SlidersVertical,
 } from 'lucide-react';
 import Image from 'next/image';
-import { currentUser } from '@/data/users';
 
-export default function UserNavigationBar() {
+export default function UserNavigationBar({ session }) {
     const pathname = usePathname();
     const router = useRouter();
 
@@ -57,7 +56,7 @@ export default function UserNavigationBar() {
                     />
                     <div className="hidden md:block">
                         <h1 className="text-lg font-semibold text-gray-900">
-                            {currentUser.name}
+                            {session.user.name}
                         </h1>
                         <p className="text-sm text-gray-400">User Platinum</p>
                     </div>

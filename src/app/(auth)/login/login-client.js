@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { login } from '@/lib/auth-action';
+import { signIn } from '@/lib/auth-action';
 
 export default function LoginClient() {
     const [email, setEmail] = useState('');
@@ -19,12 +19,12 @@ export default function LoginClient() {
         setError(null);
 
         try {
-            const result = await login({ email, password });
+            const result = await signIn({ email, password });
             if (!result.user) {
                 setError(result.error || 'Login failed');
             } else {
-                const callBackUrl = searchParams.get('callbackUrl') || '/user';
-                router.push(callBackUrl);
+                const callbackUrl = searchParams.get('callbackUrl') || '/user';
+                router.push(callbackUrl);
             }
         } catch (err) {
             setError(
@@ -98,6 +98,12 @@ export default function LoginClient() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+
+                            {error && (
+                                <p className="mt-4 text-sm text-red-600">
+                                    {error}
+                                </p>
+                            )}
 
                             <button
                                 type="submit"
