@@ -10,13 +10,19 @@ import {
     SlidersVertical,
 } from 'lucide-react';
 import Image from 'next/image';
+import { logout } from '@/lib/auth-action';
 
 export default function UserNavigationBar({ session }) {
     const pathname = usePathname();
     const router = useRouter();
 
     const handleSignOut = async () => {
-        router.push('/login');
+        try {
+            await logout();
+            router.push('/login');
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
     };
 
     const menus = [

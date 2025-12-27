@@ -19,6 +19,7 @@ model User {
   email         String   @unique
   emailVerified Boolean  @default(false)
   image         String?  @db.Text
+  role          UserRole @default(USER)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -160,4 +161,13 @@ enum OrderStatus {
   shipped
   delivered
   cancelled
+}
+
+
+// ===============================
+// User Roles
+// ===============================
+enum UserRole {
+  USER
+  ADMIN
 }

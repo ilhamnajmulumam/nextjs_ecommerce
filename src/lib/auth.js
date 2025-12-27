@@ -12,5 +12,20 @@ export const auth = betterAuth({
         autoSignIn: true,
     },
 
+    user: {
+        additionalFields: {
+            role: {
+                type: 'string',
+            },
+        },
+    },
+
+    callback: {
+        async session({ session, user }) {
+            session.user.role = user.role;
+            return session;
+        },
+    },
+
     plugins: [nextCookies()],
 });

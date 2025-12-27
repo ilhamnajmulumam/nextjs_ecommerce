@@ -4,7 +4,12 @@ import { ShoppingBag, Clock, Heart, ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import OrderStatusBadge from '@/component/OrderStatusBadge';
 
-export default function UserClient({ totalSpent, activeOrders, myOrders }) {
+export default function UserClient({
+    totalSpent,
+    activeOrders,
+    myOrders,
+    session,
+}) {
     const router = useRouter();
 
     return (
@@ -12,7 +17,7 @@ export default function UserClient({ totalSpent, activeOrders, myOrders }) {
             {/* Header */}
             <header>
                 <h1 className="text-3xl font-bold text-gray-900">
-                    Welcome, Ilham Najmul Umam 👋
+                    Welcome, {session.user.name} 👋
                 </h1>
                 <p className="text-gray-600 mt-2">
                     Here is your dashboard to manage orders and profile.

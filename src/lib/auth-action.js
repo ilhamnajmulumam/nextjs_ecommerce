@@ -23,7 +23,7 @@ export async function signIn({ email, password }) {
 
 export async function logout() {
     const hdr = await headers();
-    return await auth.api.logout({
+    return await auth.api.signOut({
         headers: hdr,
     });
 }

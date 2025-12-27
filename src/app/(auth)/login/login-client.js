@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, redirect } from 'next/navigation';
 import { signIn } from '@/lib/auth-action';
 
 export default function LoginClient() {
@@ -20,12 +20,14 @@ export default function LoginClient() {
 
         try {
             const result = await signIn({ email, password });
-            if (!result.user) {
-                setError(result.error || 'Login failed');
-            } else {
-                const callbackUrl = searchParams.get('callbackUrl') || '/user';
-                router.push(callbackUrl);
+            console.log('ROLE:', result.user.role);
+
+            if (result?.error) {
+                setError(result.error);
+                return;
             }
+
+            router.push('/redirect');
         } catch (err) {
             setError(
                 `Authentication error: ${
@@ -121,7 +123,7 @@ export default function LoginClient() {
                             <p className="mt-6 text-sm text-center text-gray-600">
                                 Belum punya akun?{' '}
                                 <Link
-                                    href="/signup"
+                                    href="/sign-up"
                                     className="text-indigo-600 font-semibold hover:underline"
                                 >
                                     Daftar di sini
