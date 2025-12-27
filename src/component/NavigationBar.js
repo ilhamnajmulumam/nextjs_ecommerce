@@ -1,6 +1,23 @@
 import { BookText, Search, Menu } from 'lucide-react';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+import { logout } from '@/lib/auth-action';
+import NavAuthButton from './NavAuthButton';
 
-export default function NavigationBar() {
+export default async function NavigationBar() {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    const handleSignOut = async () => {
+        try {
+            await logout();
+            router.push('/login');
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    };
+
     return (
         <nav className="w-7/8 bg-white shadow-md px-8 py-4 flex items-center justify-between rounded-xl fixed top-4 left-1/2 -translate-x-1/2 z-10">
             {/* Logo */}
@@ -35,21 +52,8 @@ export default function NavigationBar() {
                 ))}
             </ul>
 
-            {/* Auth Buttons */}
-            <div className="hidden md:flex items-center gap-4">
-                <a
-                    href="login"
-                    className="text-lg hover:text-blue-600 transition"
-                >
-                    Login
-                </a>
-                <a
-                    href="sign-up"
-                    className="bg-blue-600 text-white px-5 py-2 rounded-xl text-lg hover:bg-blue-700 transition"
-                >
-                    Signup
-                </a>
-            </div>
+            {/* Auth Button (CLIENT) */}
+            <NavAuthButton session={session} />
 
             {/* Mobile Menu Icon */}
             <button className="md:hidden">
