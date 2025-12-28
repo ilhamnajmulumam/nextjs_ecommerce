@@ -14,6 +14,10 @@ export default async function UserDashboard() {
         redirect('/login');
     }
 
+    if (session.user.role !== 'USER') {
+        redirect('/admin');
+    }
+
     const myOrders = orders.filter((o) => o.userId === currentUser.id);
     const totalSpent = myOrders.reduce((sum, o) => sum + o.total, 0);
     const activeOrders = myOrders.filter((o) =>

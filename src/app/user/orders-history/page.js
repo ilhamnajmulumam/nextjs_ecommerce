@@ -3,8 +3,23 @@ import { Package, Truck, CheckCircle, Clock, XCircle } from 'lucide-react';
 import { orders } from '@/data/orders';
 import { currentUser } from '@/data/users';
 import OrderStatusBadge from '@/component/OrderStatusBadge';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-export default function OrderHistoryPage() {
+export default async function OrderHistoryPage() {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session) {
+        redirect('/login');
+    }
+
+    if (session.user.role !== 'USER') {
+        redirect('/admin');
+    }
+
     const myOrders = orders.filter((o) => o.userId === currentUser.id);
     const getStatusIcon = (status) => {
         switch (status) {
