@@ -1,6 +1,6 @@
 import CategoriesClient from './categories-client';
-import { categories } from '@/data/categories';
 import { auth } from '@/lib/auth';
+import { getCategories } from '@/lib/categories-action';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -16,6 +16,8 @@ export default async function CategoriesPage() {
     if (session.user.role !== 'ADMIN') {
         redirect('/user');
     }
+
+    const categories = await getCategories();
 
     return (
         <div className="bg-gray-200 min-h-screen w-screen p-10">
