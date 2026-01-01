@@ -21,10 +21,12 @@ export default function AdminLayout({ children }) {
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen overflow-hidden`}
             >
                 <AdminNavigationBar />
-                {children}
+                <div className="flex-1 overflow-auto bg-gray-100">
+                    {children}
+                </div>
             </body>
         </html>
     );

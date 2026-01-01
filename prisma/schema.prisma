@@ -93,28 +93,46 @@ model Category {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  books Book[]
+  bookCategory BookCategory[]
 
   @@map("category")
 }
 
 model Book {
-  id        String   @id @default(cuid())
-  title     String
-  author    String
-  price     Int
-  stock     Int
-  cover     String?  @db.Text
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(cuid())
+  title          String
+  description    String?  @db.Text
+  author         String
+  isbn           String?  @unique
+  publisher      String?
+  publishedYear  Int?
+  rating         Float?
+  price          Int
+  stock          Int
+  cover          String?  @db.Text
 
-  categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  orderItems OrderItem[]
+  bookCategories BookCategory[]
+  orderItems     OrderItem[]
 
-  @@index([categoryId])
   @@map("book")
+}
+
+model BookCategory {
+  bookId        String
+  categoryId    String
+
+  assignedAt DateTime @default(now())
+
+  book     Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([bookId, categoryId])
+  @@index([categoryId])
+  @@map("book_category")
+
 }
 
 // ===============================

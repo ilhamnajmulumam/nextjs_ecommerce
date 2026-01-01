@@ -18,7 +18,7 @@ export default async function OrdersPage() {
     }
 
     return (
-        <div className="bg-gray-200 min-h-screen w-screen p-10">
+        <div className="bg-gray-200 min-h-screen p-10">
             <OrdersClient orders={orders} />
         </div>
     );

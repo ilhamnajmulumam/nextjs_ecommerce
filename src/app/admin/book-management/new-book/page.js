@@ -1,10 +1,10 @@
-import CategoriesClient from './categories-client';
+import NewBookClient from './new-book-client';
 import { auth } from '@/lib/auth';
 import { getCategories } from '@/lib/categories-action';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export default async function CategoriesPage() {
+export default async function NewBookPage() {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -20,8 +20,8 @@ export default async function CategoriesPage() {
     const categories = await getCategories();
 
     return (
-        <div className="bg-gray-200 min-h-screen p-10">
-            <CategoriesClient categories={categories} />
+        <div className="bg-gray-200 p-10">
+            <NewBookClient categories={categories} />
         </div>
     );
 }
