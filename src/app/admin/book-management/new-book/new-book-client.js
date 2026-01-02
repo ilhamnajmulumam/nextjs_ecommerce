@@ -1,5 +1,6 @@
 'use client';
 
+import { addBook } from '@/lib/books-management-action';
 import { useState } from 'react';
 
 export default function NewBookClient({ categories }) {
@@ -19,7 +20,7 @@ export default function NewBookClient({ categories }) {
                 Form New Book
             </h2>
 
-            <form className="grid grid-cols-1 gap-6">
+            <form action={addBook} className="grid grid-cols-1 gap-6">
                 {/* Title */}
                 <div>
                     <label className="label">Title</label>
@@ -80,7 +81,7 @@ export default function NewBookClient({ categories }) {
                     <div>
                         <label className="label">Year Published</label>
                         <input
-                            name="year_published"
+                            name="publishedYear"
                             type="number"
                             placeholder="2024"
                             className="input"
@@ -112,7 +113,12 @@ export default function NewBookClient({ categories }) {
                 {/* Image */}
                 <div>
                     <label className="label">Book Image</label>
-                    <input name="image" type="file" className="input-file" />
+                    <input
+                        name="cover"
+                        type="file"
+                        accept="image/*"
+                        className="input-file"
+                    />
                 </div>
 
                 {/* Rating, Price, Stock */}
@@ -120,7 +126,7 @@ export default function NewBookClient({ categories }) {
                     <div>
                         <label className="label">Rating</label>
                         <input
-                            name="book_rating"
+                            name="rating"
                             type="number"
                             step="0.1"
                             placeholder="4.5"

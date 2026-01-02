@@ -93,7 +93,7 @@ model Category {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  bookCategory BookCategory[]
+  bookCategories BookCategory[]
 
   @@map("category")
 }
@@ -130,7 +130,6 @@ model BookCategory {
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@id([bookId, categoryId])
-  @@index([categoryId])
   @@map("book_category")
 
 }
