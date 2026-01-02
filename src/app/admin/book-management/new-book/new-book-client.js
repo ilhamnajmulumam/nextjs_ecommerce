@@ -2,8 +2,11 @@
 
 import { addBook } from '@/lib/books-management-action';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { ArrowLeft } from 'lucide-react';
 
 export default function NewBookClient({ categories }) {
+    const router = useRouter();
     const [selectedCategories, setSelectedCategories] = useState([]);
 
     const toggleCategory = (categoryId) => {
@@ -19,6 +22,17 @@ export default function NewBookClient({ categories }) {
             <h2 className="font-bold text-3xl text-slate-900 border-b pb-4">
                 Form New Book
             </h2>
+
+            <div className="flex items-center gap-3">
+                <button
+                    type="button"
+                    onClick={() => router.back()}
+                    className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900"
+                >
+                    <ArrowLeft size={18} />
+                    Kembali
+                </button>
+            </div>
 
             <form action={addBook} className="grid grid-cols-1 gap-6">
                 {/* Title */}

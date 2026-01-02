@@ -9,6 +9,34 @@ import { writeFile, mkdir } from 'fs/promises';
 import { v4 as uuid } from 'uuid';
 import path from 'path';
 
+export async function getBooks() {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session?.user?.id) {
+        throw new Error('Unauthorized');
+    }
+
+    const books = await prisma.book.findMany({
+        orderBy: [
+            { title: 'asc' },
+            { author: 'asc' },
+            { publishedYear: 'desc' },
+        ],
+        include: {
+            bookCategories: {
+                include: { category: true },
+            },
+        },
+    });
+
+    return books.map((book) => ({
+        ...book,
+        categories: book.bookCategories.map((bc) => bc.category),
+    }));
+}
+
 export async function addBook(formData) {
     const session = await auth.api.getSession({
         headers: await headers(),

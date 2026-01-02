@@ -1,6 +1,7 @@
 import { BookmanagementClient } from './Bookmanagement-client';
-import { initialBooks } from '@/data/books';
 import { auth } from '@/lib/auth';
+import { getBooks } from '@/lib/books-management-action';
+import { getCategories } from '@/lib/categories-action';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -16,6 +17,10 @@ export default async function BookmanagementPage() {
     if (session.user.role !== 'ADMIN') {
         redirect('/user');
     }
+
+    const initialBooks = await getBooks();
+
+    console.log(initialBooks);
 
     return (
         <div className="bg-gray-200 min-h-screen p-10">

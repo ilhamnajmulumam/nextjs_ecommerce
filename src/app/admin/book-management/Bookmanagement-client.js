@@ -1,6 +1,6 @@
 'use client';
 
-import { Edit, Trash2, Plus, Search } from 'lucide-react';
+import { Edit, Trash2, Plus, Search, Tag } from 'lucide-react';
 import Image from 'next/image';
 
 export function BookmanagementClient({ initialBooks }) {
@@ -84,10 +84,16 @@ export function BookmanagementClient({ initialBooks }) {
                                         </div>
                                     </td>
 
-                                    <td className="px-6 py-4">
-                                        <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
-                                            {book.category}
-                                        </span>
+                                    <td className="px-6 py-4 flex gap-2">
+                                        {book.categories.map((cat) => (
+                                            <span
+                                                key={cat.id}
+                                                className="flex gap-2 flex-wrap px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800"
+                                            >
+                                                <Tag className="w-4 h-4" />
+                                                {cat.name}
+                                            </span>
+                                        ))}
                                     </td>
 
                                     <td className="px-6 py-4 font-medium text-slate-900">

@@ -22,7 +22,7 @@
 }
 
 .input {
-    @apply mt-2 w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200;
+    @apply mt-2 w-full p-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200;
 }
 
 .input-file {
