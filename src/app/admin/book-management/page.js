@@ -20,8 +20,6 @@ export default async function BookmanagementPage() {
 
     const initialBooks = await getBooks();
 
-    console.log(initialBooks);
-
     return (
         <div className="bg-gray-200 min-h-screen p-10">
             <BookmanagementClient initialBooks={initialBooks} />

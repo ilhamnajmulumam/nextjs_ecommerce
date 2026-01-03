@@ -2,6 +2,7 @@
 
 import { Edit, Trash2, Plus, Search, Tag } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function BookmanagementClient({ initialBooks }) {
     return (
@@ -52,8 +53,8 @@ export function BookmanagementClient({ initialBooks }) {
                                     Kategori
                                 </th>
                                 <th className="px-6 py-4 text-left">Harga</th>
-                                <th className="px-6 py-4 text-left">Stok</th>
-                                <th className="px-6 py-4 text-right">Aksi</th>
+                                <th className="px-6 py-4 text-center">Stok</th>
+                                <th className="px-6 py-4 text-center">Aksi</th>
                             </tr>
                         </thead>
 
@@ -100,15 +101,19 @@ export function BookmanagementClient({ initialBooks }) {
                                         Rp {book.price.toLocaleString('id-ID')}
                                     </td>
 
-                                    <td className="px-6 py-4 font-medium text-slate-900">
+                                    <td className="px-6 py-4 font-medium text-center text-slate-900">
                                         {book.stock}
                                     </td>
 
                                     <td className="px-6 py-4 text-right">
-                                        <div className="flex justify-end gap-2">
-                                            <button className="p-2 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition">
+                                        <div className="flex justify-center gap-2">
+                                            <Link
+                                                href={`/admin/book-management/${book.id}/edit-book`}
+                                                className="p-2 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition"
+                                            >
                                                 <Edit className="w-4 h-4" />
-                                            </button>
+                                            </Link>
+
                                             <button className="p-2 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition">
                                                 <Trash2 className="w-4 h-4" />
                                             </button>

@@ -109,3 +109,37 @@ export async function addBook(formData) {
 
     revalidatePath('/admin/books');
 }
+
+export async function updateBook(formData) {
+    const bookId = formData.get('bookId');
+
+    const categoryIds = [...new Set(formData.getAll('categoryIds'))];
+
+    await prisma.book.update({
+        where: { id: bookId },
+        data: {
+            title: formData.get('title'),
+            description: formData.get('description'),
+            author: formData.get('author'),
+            isbn: formData.get('isbn'),
+            publisher: formData.get('publisher'),
+            publishedYear: Number(formData.get('publishedYear')),
+            rating: Number(formData.get('rating')),
+            price: Number(formData.get('price')),
+            stock: Number(formData.get('stock')),
+
+            bookCategories: {
+                deleteMany: {
+                    bookId,
+                },
+                create: categoryIds.map((id) => ({
+                    category: {
+                        connect: { id },
+                    },
+                })),
+            },
+        },
+    });
+
+    revalidatePath('/admin/books-management');
+}
