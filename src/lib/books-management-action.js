@@ -8,6 +8,7 @@ import { revalidatePath } from 'next/cache';
 import { writeFile, mkdir } from 'fs/promises';
 import { v4 as uuid } from 'uuid';
 import path from 'path';
+import { unlink } from 'fs/promises';
 
 export async function getBooks() {
     const session = await auth.api.getSession({
@@ -140,6 +141,26 @@ export async function updateBook(formData) {
             },
         },
     });
+
+    revalidatePath('/admin/books-management');
+}
+
+export async function deleteBook(fromData) {
+    const bookId = fromData.get('bookId');
+
+    if (!bookId) throw new Error('Book ID is required');
+
+    await prisma.bookCategory.deleteMany({ where: { bookId } });
+
+    const book = await prisma.book.findUnique({
+        where: { id: bookId },
+    });
+
+    if (book?.cover) {
+        await unlink(path.join(process.cwd(), 'public', book.cover));
+    }
+
+    await prisma.book.delete({ where: { id: bookId } });
 
     revalidatePath('/admin/books-management');
 }

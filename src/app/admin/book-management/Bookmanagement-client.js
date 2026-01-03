@@ -1,5 +1,6 @@
 'use client';
 
+import { DeleteBookButton } from '@/component/DeleteBookButton';
 import { Edit, Trash2, Plus, Search, Tag } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -114,9 +115,9 @@ export function BookmanagementClient({ initialBooks }) {
                                                 <Edit className="w-4 h-4" />
                                             </Link>
 
-                                            <button className="p-2 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition">
-                                                <Trash2 className="w-4 h-4" />
-                                            </button>
+                                            <DeleteBookButton
+                                                bookId={book.id}
+                                            />
                                         </div>
                                     </td>
                                 </tr>
