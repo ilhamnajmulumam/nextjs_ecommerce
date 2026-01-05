@@ -1,11 +1,41 @@
 'use client';
 
 import { DeleteBookButton } from '@/component/DeleteBookButton';
-import { Edit, Trash2, Plus, Search, Tag } from 'lucide-react';
+import { Edit, Plus, Search, Tag } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo, useState } from 'react';
 
-export function BookmanagementClient({ initialBooks }) {
+export function BookmanagementClient({ initialBooks, categories }) {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+
+    const toggleCategory = (id) => {
+        setSelectedCategories((prev) =>
+            prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
+        );
+    };
+
+    const filteredBooks = useMemo(() => {
+        return initialBooks.filter((book) => {
+            const keyword = searchTerm.toLowerCase();
+
+            const matchSearch =
+                book.title.toLowerCase().includes(keyword) ||
+                book.author.toLowerCase().includes(keyword) ||
+                book.isbn.toLowerCase().includes(keyword);
+
+            const matchCategories =
+                selectedCategories.length === 0 ||
+                book.categories.some((cat) =>
+                    selectedCategories.includes(cat.id)
+                );
+
+            return matchSearch && matchCategories;
+        });
+    }, [initialBooks, searchTerm, selectedCategories]);
+
     return (
         <section className="space-y-6">
             {/* Header */}
@@ -33,15 +63,55 @@ export function BookmanagementClient({ initialBooks }) {
                             type="text"
                             placeholder="Cari judul, penulis, atau ISBN..."
                             className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
 
-                    <select className="border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                        <option>Semua Kategori</option>
-                        <option>Fiksi</option>
-                        <option>Bisnis</option>
-                        <option>Self-Help</option>
-                    </select>
+                    <div className="relative">
+                        <button
+                            type="button"
+                            onClick={() => setIsCategoryOpen((o) => !o)}
+                            className="border border-slate-200 rounded-lg px-4 py-2 text-sm flex items-center gap-2 hover:bg-slate-50"
+                        >
+                            Filter Kategori
+                            {selectedCategories.length > 0 && (
+                                <span className="text-xs bg-indigo-600 text-white px-2 py-0.5 rounded-full">
+                                    {selectedCategories.length}
+                                </span>
+                            )}
+                        </button>
+
+                        {isCategoryOpen && (
+                            <div className="absolute z-20 mt-2 w-64 bg-white border border-slate-200 rounded-lg shadow-lg p-3 space-y-2">
+                                {categories.map((cat) => (
+                                    <label
+                                        key={cat.id}
+                                        className="flex items-center gap-2 text-sm cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedCategories.includes(
+                                                cat.id
+                                            )}
+                                            onChange={() =>
+                                                toggleCategory(cat.id)
+                                            }
+                                            className="rounded border-slate-300"
+                                        />
+                                        {cat.name}
+                                    </label>
+                                ))}
+
+                                <button
+                                    onClick={() => setSelectedCategories([])}
+                                    className="text-xs text-indigo-600 hover:underline mt-2"
+                                >
+                                    Reset Kategori
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 {/* Table */}
@@ -60,7 +130,7 @@ export function BookmanagementClient({ initialBooks }) {
                         </thead>
 
                         <tbody className="divide-y divide-slate-100">
-                            {initialBooks.map((book) => (
+                            {filteredBooks.map((book) => (
                                 <tr
                                     key={book.id}
                                     className="hover:bg-slate-50 transition-colors"
