@@ -1,4 +1,3 @@
-import NavigationBar from '@/component/NavigationBar';
 import { Flame, Archive } from 'lucide-react';
 import BooksSlider from '@/component/BooksSlider';
 import Image from 'next/image';
@@ -148,7 +147,7 @@ export default function Home() {
                                         Rp {book.price.toLocaleString('id-ID')}
                                     </p>
 
-                                    <button className="mt-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                                    <button className="mt-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition cursor-pointer">
                                         Add to Cart
                                     </button>
                                 </div>

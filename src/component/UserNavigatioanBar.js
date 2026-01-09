@@ -5,9 +5,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
     LayoutDashboard,
     ArrowLeftRight,
-    CirclePlus,
     LogOut,
     SlidersVertical,
+    ShoppingCart,
 } from 'lucide-react';
 import Image from 'next/image';
 import { logout } from '@/lib/auth-action';
@@ -39,7 +39,7 @@ export default function UserNavigationBar({ session }) {
         {
             name: 'Wishlists',
             href: '/user/wishlists',
-            icon: <CirclePlus size={20} />,
+            icon: <ShoppingCart size={20} />,
         },
         {
             name: 'Profile Settings',

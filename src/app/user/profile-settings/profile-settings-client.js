@@ -1,8 +1,20 @@
 'use client';
 
+import { updateUser } from '@/lib/user-profile-action';
 import Image from 'next/image';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
+
+const initialState = {
+    error: null,
+    success: false,
+    message: null,
+};
 
 export default function ProfileSettingsClient({ user }) {
+    const [state, formAction] = useActionState(updateUser, initialState);
+    const { pending } = useFormStatus();
+
     return (
         <div className="space-y-6">
             {/* Title */}
@@ -25,7 +37,21 @@ export default function ProfileSettingsClient({ user }) {
                 </div>
 
                 {/* Right - Form */}
-                <div className="lg:col-span-2 space-y-5">
+                <form action={formAction} className="lg:col-span-2 space-y-5">
+                    <input type="hidden" name="userId" value={user.id} />
+                    {/* ERROR MESSAGE */}
+                    {state.error && (
+                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                            {state.error}
+                        </div>
+                    )}
+
+                    {/* SUCCESS MESSAGE */}
+                    {state.success && (
+                        <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm">
+                            {state.message}
+                        </div>
+                    )}
                     {/* Row 1 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
@@ -33,10 +59,10 @@ export default function ProfileSettingsClient({ user }) {
                                 Nama Lengkap
                             </label>
                             <input
+                                name="name"
                                 type="text"
                                 placeholder="Nama Lengkap"
                                 defaultValue={user.name}
-                                onChange={(e) => console.log(e.target.value)}
                                 className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                             />
                         </div>
@@ -46,10 +72,10 @@ export default function ProfileSettingsClient({ user }) {
                                 Email
                             </label>
                             <input
+                                name="email"
                                 type="email"
                                 placeholder="Email"
                                 defaultValue={user.email}
-                                onChange={(e) => console.log(e.target.value)}
                                 className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                             />
                         </div>
@@ -62,10 +88,10 @@ export default function ProfileSettingsClient({ user }) {
                                 Nomor Telepon
                             </label>
                             <input
+                                name="phoneNumber"
                                 type="text"
                                 placeholder="Nomor Telepon"
-                                defaultValue={user.phone}
-                                onChange={(e) => console.log(e.target.value)}
+                                defaultValue={user.phoneNumber}
                                 className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                             />
                         </div>
@@ -76,9 +102,12 @@ export default function ProfileSettingsClient({ user }) {
                             </label>
                             <input
                                 type="date"
-                                placeholder="Tanggal Bergabung"
-                                defaultValue={user.joinDate}
-                                onChange={(e) => console.log(e.target.value)}
+                                value={
+                                    new Date(user.createdAt)
+                                        .toISOString()
+                                        .split('T')[0]
+                                }
+                                readOnly
                                 className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                             />
                         </div>
@@ -90,21 +119,25 @@ export default function ProfileSettingsClient({ user }) {
                             Alamat Pengiriman
                         </label>
                         <textarea
+                            name="address"
                             rows={4}
                             placeholder="Alamat Pengiriman"
                             defaultValue={user.address}
-                            onChange={(e) => console.log(e.target.value)}
                             className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none"
                         />
                     </div>
 
                     {/* Save Button */}
                     <div className="flex justify-end">
-                        <button className="px-6 py-2 bg-linear-to-r from-[#f59c0c] to-[#fa7b14] text-white rounded-lg font-medium hover:opacity-90 transition">
-                            Simpan Perubahan
+                        <button
+                            type="submit"
+                            disabled={pending}
+                            className="px-6 py-2 bg-linear-to-r from-[#f59c0c] to-[#fa7b14] text-white rounded-lg font-medium hover:opacity-90 transition cursor-pointer"
+                        >
+                            {pending ? 'Menyimpan...' : 'Simpan'}
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );

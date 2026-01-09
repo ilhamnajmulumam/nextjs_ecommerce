@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { logout } from '@/lib/auth-action';
 import NavAuthButton from './NavAuthButton';
+import { ShoppingCart } from 'lucide-react';
 
 export default async function NavigationBar() {
     const session = await auth.api.getSession({
@@ -50,6 +51,12 @@ export default async function NavigationBar() {
                         </a>
                     </li>
                 ))}
+                <a href="user/wishlists">
+                    <ShoppingCart
+                        size={25}
+                        className="hover:text-red-600 cursor-pointer"
+                    />
+                </a>
             </ul>
 
             {/* Auth Button (CLIENT) */}

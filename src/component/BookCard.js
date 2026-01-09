@@ -17,7 +17,7 @@ export default function BookCard({ title, author, image, price }) {
                 <p className="text-xs text-gray-500 mt-1">{author}</p>
                 <p className="text-xs text-gray-500 mt-1">Rp. {price}</p>
                 <div className="flex justify-start mt-2">
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors cursor-pointer">
                         Add to Cart
                     </button>
                 </div>
