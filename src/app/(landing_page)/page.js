@@ -87,7 +87,7 @@ export default function Home() {
                 </p>
 
                 {/* Popular Books */}
-                <section className="mt-12">
+                <section className="mt-7">
                     <h2 className="flex items-center text-2xl font-semibold mb-4">
                         <Flame size={26} className="text-red-500 mr-2" />
                         Popular Books
@@ -146,10 +146,6 @@ export default function Home() {
                                     <p className="mt-2 text-lg font-bold text-blue-600">
                                         Rp {book.price.toLocaleString('id-ID')}
                                     </p>
-
-                                    <button className="mt-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition cursor-pointer">
-                                        Add to Cart
-                                    </button>
                                 </div>
                             </div>
                         ))}
