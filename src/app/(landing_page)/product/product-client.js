@@ -7,6 +7,7 @@ import {
     PanelLeftDashed,
     PackageOpen,
     Banknote,
+    ShoppingCart,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -213,23 +214,48 @@ export default function ProductClient({ book }) {
                                 secara online dengan berbagai metode pembayaran
                                 yang aman dan terpercaya.
                             </p>
-                            <div className="mt-4 flex flex-wrap gap-4 stretch">
-                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+                            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition flex gap-3 items-center">
+                                    <ShoppingCart size={40} />
                                     Tambah ke Keranjang
                                 </button>
-                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition ml-4">
+                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition grow flex gap-3 items-center justify-center">
+                                    <Image
+                                        src="/shopee.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Shopee"
+                                    />
                                     Shopee
                                 </button>
-                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition ml-4">
+                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition grow flex gap-3 items-center justify-center">
+                                    <Image
+                                        src="/tokopedia.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Tokopedia"
+                                    />
                                     Tokopedia
                                 </button>
-                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition ml-4">
+                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition grow flex gap-3 items-center justify-center">
+                                    <Image
+                                        src="/google-books.svg"
+                                        width={25}
+                                        height={25}
+                                        alt="Google Books"
+                                        className="inline-block mr-2"
+                                    />
                                     Google Books
                                 </button>
-                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition ml-4">
-                                    Baca Buku
-                                </button>
-                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition ml-4">
+
+                                <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition flex gap-3 items-center justify-center">
+                                    <Image
+                                        src="/whats-app.svg"
+                                        width={25}
+                                        height={25}
+                                        alt="WhatsApp"
+                                        className="inline-block mr-2"
+                                    />
                                     Via WhatsApp
                                 </button>
                             </div>
