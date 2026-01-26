@@ -60,6 +60,23 @@ export default function ProductClient({ book }) {
                                 {book.ketersediaan}
                             </p>
                         </div>
+                        {/* Discount */}
+                        <div className="p-4 border rounded-xl my-4 border-orange-500 bg-orange-100">
+                            <p className="text-sm text-justify">
+                                Diskon 5% dengan kode{' '}
+                                <span className="font-bold">
+                                    `&quot;DEEPBUKU dan SUKIRMAN (FREE 20K
+                                    ONGKIR) &quot;`
+                                </span>
+                                , Cek di{' '}
+                                <a
+                                    href="/promo"
+                                    className="text-blue-500 font-bold hover:underline"
+                                >
+                                    Promo
+                                </a>
+                            </p>
+                        </div>
 
                         {/* Description */}
                         <p className="mt-3 text-gray-500 text-justify">
